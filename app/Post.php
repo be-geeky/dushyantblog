@@ -12,6 +12,13 @@ class Post extends Model
 	
 	public function canUserEdit(){
 		$currentUser = Auth::user();
+		$roles = $currentUser->roles;
+		
+		foreach( $roles As $role){
+			if($role->id==1){
+				return true;	
+			}
+		}		
 		return ($currentUser->id==$this->user_id);
 	}
 	
